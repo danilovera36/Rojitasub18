@@ -1,17 +1,23 @@
 from flask import Flask, render_template_string
 import pandas as pd
-import os
-from urllib.parse import quote as url_quote 
+from sqlalchemy import create_engine
 
 app = Flask(__name__)
 
-# Función para cargar los datos desde el Excel
+# Configura tu conexión a la base de datos
+DATABASE_URL = "postgresql://rojita_sub_18_user:zpdx3RKqcQKRRKf1RhgMLPUxNYJmbLBY@dpg-ct8a08t2ng1s73aell30-a:5432/rojita_sub_18"
+
+# Crear el motor de conexión
+engine = create_engine(DATABASE_URL)
+
+# Función para cargar los datos desde la base de datos
 def cargar_datos():
     try:
-        # Leer el archivo Excel
-        jugadores_df = pd.read_excel('jugadores.xlsx')
+        # Consulta a la base de datos para obtener los datos de los jugadores
+        query = "SELECT * FROM jugadores"
+        jugadores_df = pd.read_sql(query, engine)
 
-        # Mostrar las columnas para verificar
+        # Verificar si los datos se cargaron correctamente
         print(jugadores_df.columns)
 
         # Verificar y procesar las rutas de las fotos
@@ -19,12 +25,12 @@ def cargar_datos():
 
         return jugadores_df
     except Exception as e:
-        print(f"Error al cargar los datos del Excel: {e}")
+        print(f"Error al cargar los datos de la base de datos: {e}")
         return pd.DataFrame()  # Retorna un DataFrame vacío en caso de error
 
 # Función para buscar las imágenes de los jugadores
 def buscar_imagen(nombre_jugador):
-    imagen_path = os.path.join('static/fotos', f'{nombre_jugador}.png')
+    imagen_path = f'static/fotos/{nombre_jugador}.png'
     if os.path.exists(imagen_path):
         return imagen_path
     else:
@@ -33,12 +39,12 @@ def buscar_imagen(nombre_jugador):
 # Ruta principal de la aplicación
 @app.route('/')
 def home():
-    # Cargar los datos desde el Excel
+    # Cargar los datos desde la base de datos
     jugadores_df = cargar_datos()
 
     # Verificar si el DataFrame está vacío
     if jugadores_df.empty:
-        return "Error al cargar los datos del Excel"
+        return "Error al cargar los datos de la base de datos"
 
     # Crear el HTML para mostrar los jugadores
     html_template = """
@@ -132,7 +138,7 @@ def home():
         <div class="player-card">
             <div class="player-info">
                 <strong>{{ player['Nombre completo'] }}</strong><br>
-                <small>{{ player['Cédula'] }} | Celular: {{ player['Celular'] }} | Fecha de nacimiento: {{ player['Fecha de nacimiento'] }}</small>
+                <small>Cédula: {{ player['Cédula'] }} | Fecha de nacimiento: {{ player['Fecha de nacimiento'] }} | Celular: {{ player['Celular'] }}</small>
             </div>
             <img src="{{ player['Foto'] }}" alt="{{ player['Nombre completo'] }}">
             <button onclick="toggleDetails({{ index }})">Ver detalles</button>
