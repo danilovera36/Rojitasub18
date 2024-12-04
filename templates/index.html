@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Jugadores{% endblock %}
+
+{% block content %}
+<h2>Jugadores de la Selección</h2>
+
+<div class="player-list">
+    {% for index, player in jugadores.iterrows() %}
+    <div class="player-card">
+        <div class="player-info">
+            <strong>{{ player['Nombre completo'] }}</strong><br>
+            <small>Cédula: {{ player['Cédula'] }} | Edad: {{ player['Edad'] }} | Altura: {{ player['Altura (cm)'] }} cm</small>
+        </div>
+        <img src="{{ player['Foto'] }}" alt="{{ player['Nombre completo'] }}">
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

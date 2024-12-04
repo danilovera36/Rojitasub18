@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Aplicación{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/jugadores">Jugadores</a>
+        </nav>
+    </header>
+
+    <!-- Contenido de cada página que extiende de base.html -->
+    <div class="container">
+        {% block content %}
+        <!-- Aquí se mostrará el contenido de cada página que use esta plantilla -->
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Mi Aplicación</p>
+    </footer>
+</body>
+</html>
