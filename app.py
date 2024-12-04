@@ -1,20 +1,23 @@
-from flask import Flask, render_template_string
 import pandas as pd
+from flask import Flask, render_template_string
 import os
 
 app = Flask(__name__)
 
-# Función para cargar los datos desde el Excel
+# Función para cargar los datos desde el archivo Excel
 def cargar_datos():
     try:
         # Leer el archivo Excel
         jugadores_df = pd.read_excel('jugadores.xlsx')
 
-        # Verificar si los datos se cargaron correctamente
+        # Verificar las columnas del DataFrame para asegurar que los datos son correctos
         print(jugadores_df.columns)
 
         # Verificar y procesar las rutas de las fotos
         jugadores_df['Foto'] = jugadores_df['Nombre completo'].apply(lambda x: buscar_imagen(x))
+
+        # Formatear la fecha de nacimiento para quitar la hora (si es necesario)
+        jugadores_df['Fecha de nacimiento'] = pd.to_datetime(jugadores_df['Fecha de nacimiento']).dt.strftime('%Y-%m-%d')
 
         return jugadores_df
     except Exception as e:
