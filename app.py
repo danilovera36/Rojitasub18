@@ -132,7 +132,7 @@ def home():
         <div class="player-card">
             <div class="player-info">
                 <strong>{{ player['Nombre completo'] }}</strong><br>
-                <small>Cédula: {{ player['Cédula'] }} | Edad: {{ player['Edad'] }} | Altura: {{ player['Altura (cm)'] }} cm</small>
+                <small>{{ player['Cédula'] }} | Celular: {{ player['Celular'] }} | Fecha de nacimiento: {{ player['Fecha de nacimiento'] }}</small>
             </div>
             <img src="{{ player['Foto'] }}" alt="{{ player['Nombre completo'] }}">
             <button onclick="toggleDetails({{ index }})">Ver detalles</button>
