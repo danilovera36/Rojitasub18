@@ -1,19 +1,45 @@
 from flask import Flask, render_template_string
 import pandas as pd
+import os
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-    # Ruta al archivo Excel
-    excel_file_path = "/home/danilovera/Descargas/rojita/jugadores.xlsx"
+# Función para cargar los datos desde el Excel
+def cargar_datos():
     try:
-        jugadores_df = pd.read_excel(excel_file_path)
+        # Leer el archivo Excel
+        jugadores_df = pd.read_excel('jugadores.xlsx')
+
+        # Mostrar las columnas para verificar
+        print(jugadores_df.columns)
+
+        # Verificar y procesar las rutas de las fotos
+        jugadores_df['Foto'] = jugadores_df['Nombre completo'].apply(lambda x: buscar_imagen(x))
+
+        return jugadores_df
     except Exception as e:
-        return f"Error al leer el archivo Excel: {e}"
+        print(f"Error al cargar los datos del Excel: {e}")
+        return pd.DataFrame()  # Retorna un DataFrame vacío en caso de error
 
-    jugadores = jugadores_df.to_dict(orient="records")
+# Función para buscar las imágenes de los jugadores
+def buscar_imagen(nombre_jugador):
+    imagen_path = os.path.join('static/fotos', f'{nombre_jugador}.png')
+    if os.path.exists(imagen_path):
+        return imagen_path
+    else:
+        return 'static/fotos/default-player.png'
 
+# Ruta principal de la aplicación
+@app.route('/')
+def home():
+    # Cargar los datos desde el Excel
+    jugadores_df = cargar_datos()
+
+    # Verificar si el DataFrame está vacío
+    if jugadores_df.empty:
+        return "Error al cargar los datos del Excel"
+
+    # Crear el HTML para mostrar los jugadores
     html_template = """
     <!DOCTYPE html>
     <html lang="es">
@@ -34,65 +60,50 @@ def home():
                 margin-bottom: 20px;
             }
             img.logo {
-                width: 113px;
+                width: 113px; 
                 height: 113px;
             }
             h1 {
                 text-align: center;
                 flex-grow: 1;
-                color: #FF0000;
+                color: red;
                 font-size: 24px;
                 margin: 0;
             }
-            table {
+            #searchBar {
                 width: 100%;
-                border-collapse: collapse;
-                margin-top: 20px;
-                background-color: #fff;
+                padding: 10px;
+                margin-bottom: 20px;
+                font-size: 16px;
                 border: 1px solid #ddd;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
             }
-            th, td {
-                padding: 12px;
-                text-align: left;
-                border-bottom: 1px solid #ddd;
+            .player-card {
+                background-color: #fff;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin: 10px 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
             }
-            th {
-                background-color: #FF0000;
-                color: white;
+            .player-card img {
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                margin-right: 20px;
             }
-            tr:hover {
-                background-color: #f1f1f1;
+            .player-info {
+                flex-grow: 1;
             }
             .details {
-                display: none; /* Ocultar inicialmente */
-                background-color: #f9f9f9;
-                padding: 20px;
-                border: 1px solid #ddd;
+                display: none;
                 margin-top: 10px;
-                border-radius: 8px;
-            }
-            .details .data-row {
-                display: flex;
-                margin-bottom: 10px;
-                align-items: center;
-            }
-            .details .data-row div {
-                margin-left: 10px;
-                font-size: 14px;
-            }
-            .player-photo {
-                width: 120px;
-                height: 120px;
-                border-radius: 50%;
-                background-color: #f1f1f1;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 12px;
-                color: #666;
-                overflow: hidden;
-                margin-right: 20px;
+                background-color: #f9f9f9;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
             }
             button {
                 background-color: #FF0000;
@@ -108,62 +119,61 @@ def home():
         </style>
     </head>
     <body>
-
     <header>
-        <img src="/static/logo.png" alt="Logo Federación" class="logo">
+        <img src="static/logo.png" alt="Logo Federación" class="logo">
         <h1>SELECCIÓN COLONIA INTERIOR SUB 18</h1>
     </header>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre completo</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for player in jugadores %}
-            <tr>
-                <td>{{ player["Nombre completo"] }}</td>
-                <td><button onclick="toggleDetails(this)">Ver detalles</button></td>
-            </tr>
-            <tr class="details">
-                <td colspan="2">
-                    <div class="data-row">
-                        <div class="player-photo">
-                            <img src="{{ player.get('Foto', '/static/default-player.png') }}" alt="Foto de {{ player['Nombre completo'] }}" style="width: 100%; height: 100%;">
-                        </div>
-                        <div>
-                            <strong>Nombre:</strong> {{ player["Nombre completo"] }}<br>
-                            <strong>Cédula:</strong> {{ player["Cédula"] }}<br>
-                            <strong>Edad:</strong> {{ player["Edad"] }}<br>
-                            <strong>Fecha de nacimiento:</strong> {{ player["Fecha de nacimiento"] }}<br>
-                            <strong>Celular:</strong> {{ player["Celular"] }}<br>
-                            <strong>Altura:</strong> {{ player["Altura (cm)"] }} cm<br>
-                            <strong>Peso:</strong> {{ player["Peso (kg)"] }} kg<br>
-                            <strong>Sanatorio:</strong> {{ player["Sanatorio"] }}<br>
-                            <strong>Grupo sanguíneo:</strong> {{ player["Grupo sanguineo"] }}<br>
-                            <strong>Enfermedades previas:</strong> {{ player["Enfermedades previas"] }}<br>
-                            <strong>Alergias:</strong> {{ player["Alergias"] }}<br>
-                            <strong>Medicamentos habituales:</strong> {{ player["Medicamentos habituales"] }}<br>
-                            <strong>Cirugías previas:</strong> {{ player["Cirugías previas"] }}<br>
-                            <strong>Lesiones previas:</strong> {{ player["Lesiones previas"] }}<br>
-                            <strong>Contacto de referencia 1:</strong> {{ player["Contacto de referencia (nombre, relación, teléfono)"] }}<br>
-                            <strong>Contacto de referencia 2:</strong> {{ player["Contacto de referencia 2 (nombre, relación, teléfono)"] }}
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <input type="text" id="searchBar" onkeyup="searchPlayer()" placeholder="Buscar jugador..." />
+
+    <div id="playerList">
+        {% for index, player in jugadores.iterrows() %}
+        <div class="player-card">
+            <div class="player-info">
+                <strong>{{ player['Nombre completo'] }}</strong><br>
+                <small>Cédula: {{ player['Cédula'] }} | Edad: {{ player['Edad'] }} | Altura: {{ player['Altura (cm)'] }} cm</small>
+            </div>
+            <img src="{{ player['Foto'] }}" alt="{{ player['Nombre completo'] }}">
+            <button onclick="toggleDetails({{ index }})">Ver detalles</button>
+        </div>
+
+        <div class="details" id="details-{{ index }}">
+            <p><strong>Fecha de nacimiento:</strong> {{ player['Fecha de nacimiento'] }}</p>
+            <p><strong>Celular:</strong> {{ player['Celular'] }}</p>
+            <p><strong>Peso:</strong> {{ player['Peso (kg)'] }} kg</p>
+            <p><strong>Sanatorio:</strong> {{ player['Sanatorio'] }}</p>
+            <p><strong>Grupo sanguíneo:</strong> {{ player['Grupo sanguíneo'] }}</p>
+            <p><strong>Enfermedades previas:</strong> {{ player['Enfermedades previas'] }}</p>
+            <p><strong>Alergias:</strong> {{ player['Alergias'] }}</p>
+            <p><strong>Medicamentos habituales:</strong> {{ player['Medicamentos habituales'] }}</p>
+            <p><strong>Cirugías previas:</strong> {{ player['Cirugías previas'] }}</p>
+            <p><strong>Lesiones previas:</strong> {{ player['Lesiones previas'] }}</p>
+            <p><strong>Contacto de referencia 1:</strong> {% if player['Contacto de referencia 1'] %}{{ player['Contacto de referencia 1'] }}{% else %}No disponible{% endif %}</p>
+            <p><strong>Contacto de referencia 2:</strong> {% if player['Contacto de referencia 2'] %}{{ player['Contacto de referencia 2'] }}{% else %}No disponible{% endif %}</p>
+        </div>
+        {% endfor %}
+    </div>
 
     <script>
-        function toggleDetails(button) {
-            const row = button.parentElement.parentElement;
-            const details = row.nextElementSibling;
-            if (details && details.classList.contains('details')) {
-                details.style.display = details.style.display === 'block' ? 'none' : 'block';
+        function toggleDetails(index) {
+            const detailsRow = document.getElementById('details-' + index);
+            const isVisible = detailsRow.style.display === 'block';
+            detailsRow.style.display = isVisible ? 'none' : 'block';
+        }
+
+        function searchPlayer() {
+            const filter = document.getElementById("searchBar").value.toUpperCase();
+            const playerList = document.getElementById("playerList");
+            const players = playerList.getElementsByClassName("player-card");
+
+            for (let i = 0; i < players.length; i++) {
+                const playerName = players[i].getElementsByClassName("player-info")[0];
+                const nameText = playerName.innerText || playerName.textContent;
+                if (nameText.toUpperCase().indexOf(filter) > -1) {
+                    players[i].style.display = "";
+                } else {
+                    players[i].style.display = "none";
+                }
             }
         }
     </script>
@@ -171,7 +181,7 @@ def home():
     </body>
     </html>
     """
-    return render_template_string(html_template, jugadores=jugadores)
+    return render_template_string(html_template, jugadores=jugadores_df)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
