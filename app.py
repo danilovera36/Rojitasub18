@@ -1,21 +1,14 @@
 from flask import Flask, render_template_string
 import pandas as pd
-from sqlalchemy import create_engine
+import os
 
 app = Flask(__name__)
 
-# Configura tu conexión a la base de datos
-DATABASE_URL = "postgresql://rojita_sub_18_user:zpdx3RKqcQKRRKf1RhgMLPUxNYJmbLBY@dpg-ct8a08t2ng1s73aell30-a:5432/rojita_sub_18"
-
-# Crear el motor de conexión
-engine = create_engine(DATABASE_URL)
-
-# Función para cargar los datos desde la base de datos
+# Función para cargar los datos desde el Excel
 def cargar_datos():
     try:
-        # Consulta a la base de datos para obtener los datos de los jugadores
-        query = "SELECT * FROM jugadores"
-        jugadores_df = pd.read_sql(query, engine)
+        # Leer el archivo Excel
+        jugadores_df = pd.read_excel('jugadores.xlsx')
 
         # Verificar si los datos se cargaron correctamente
         print(jugadores_df.columns)
@@ -25,7 +18,7 @@ def cargar_datos():
 
         return jugadores_df
     except Exception as e:
-        print(f"Error al cargar los datos de la base de datos: {e}")
+        print(f"Error al cargar los datos del Excel: {e}")
         return pd.DataFrame()  # Retorna un DataFrame vacío en caso de error
 
 # Función para buscar las imágenes de los jugadores
@@ -39,12 +32,12 @@ def buscar_imagen(nombre_jugador):
 # Ruta principal de la aplicación
 @app.route('/')
 def home():
-    # Cargar los datos desde la base de datos
+    # Cargar los datos desde el Excel
     jugadores_df = cargar_datos()
 
     # Verificar si el DataFrame está vacío
     if jugadores_df.empty:
-        return "Error al cargar los datos de la base de datos"
+        return "Error al cargar los datos del Excel"
 
     # Crear el HTML para mostrar los jugadores
     html_template = """
