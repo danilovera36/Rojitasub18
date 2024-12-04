@@ -147,6 +147,7 @@ def home():
         <div class="details" id="details-{{ index }}">
             <p><strong>Fecha de nacimiento:</strong> {{ player['Fecha de nacimiento'] }}</p>
             <p><strong>Celular:</strong> {{ player['Celular'] }}</p>
+            <p><strong>Altura:</strong> {{ player['Altura (cm)'] }} cm</p>
             <p><strong>Peso:</strong> {{ player['Peso (kg)'] }} kg</p>
             <p><strong>Sanatorio:</strong> {{ player['Sanatorio'] }}</p>
             <p><strong>Grupo sanguíneo:</strong> {{ player['Grupo sanguíneo'] }}</p>
