@@ -1,0 +1,88 @@
+/* Estilos generales para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f8f9fa; /* Color de fondo gris claro */
+}
+
+/* Estilos para la cabecera (logo y título) */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+img.logo {
+    width: 113px; 
+    height: 113px;
+}
+
+h1 {
+    text-align: center;
+    flex-grow: 1; /* Hace que el título ocupe el espacio disponible entre el logo y el borde */
+    color: red;
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Estilos para la barra de búsqueda */
+#searchBar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Estilos para la tarjeta de cada jugador */
+.player-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Estilos para la foto del jugador dentro de la tarjeta */
+.player-card img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%; /* Hace que la imagen sea redonda */
+    margin-right: 20px;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+}
+
+/* Contenedor para la información básica del jugador */
+.player-info {
+    flex-grow: 1; /* Hace que esta área ocupe el espacio máximo posible */
+}
+
+/* Estilos para el contenedor de detalles que se muestra/oculta */
+.details {
+    display: none; /* Oculto por defecto */
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Estilos para el botón "Ver detalles" */
+button {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Efecto al pasar el ratón sobre el botón */
+button:hover {
+    background-color: #cc0000;
+}

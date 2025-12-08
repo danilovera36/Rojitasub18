@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos esenciales para el navegador -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección Colonia Interior Sub 18</title>
+    
+    <!-- Enlazamos nuestra hoja de estilos CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Cabecera de la página con el logo y el título -->
+    <header>
+        <img src="static/logo.png" alt="Logo Federación" class="logo">
+        <h1>SELECCIÓN COLONIA INTERIOR SUB 18</h1>
+    </header>
+
+    <!-- Barra de búsqueda -->
+    <input type="text" id="searchBar" placeholder="Buscar jugador por nombre..." />
+
+    <!-- 
+        Este es el contenedor principal.
+        JavaScript inyectará aquí todas las tarjetas de los jugadores
+        de forma dinámica al cargar la página.
+    -->
+    <div id="playerList">
+        <!-- Los jugadores se insertarán aquí -->
+    </div>
+
+    <!-- 
+        Enlazamos nuestro archivo JavaScript.
+        Se coloca al final del body para asegurar que todo el HTML
+        se haya cargado antes de que el script intente manipularlo.
+    -->
+    <script src="js/main.js"></script>
+</body>
+</html>
