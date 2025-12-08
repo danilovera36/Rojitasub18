@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <strong>${player['Nombre completo']}</strong><br>
                     <small>Cédula: ${player['Cédula']} | Fecha de nacimiento: ${player['Fecha de nacimiento']} | Celular: ${player['Celular']}</small>
                 </div>
-                <img src="${imagePath}" alt="${player['Nombre completo']}" onerror="this.onerror=null; this.src='${defaultImagePath}';">
+                <img src="${imagePath}" alt="${player['Nombre completo']}" onerror="this.onerror=null; this.src="${defaultImagePath}";">
                 <button onclick="toggleDetails(${index})">Ver detalles</button>
             `;
 
