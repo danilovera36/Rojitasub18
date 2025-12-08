@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+from datetime import datetime
 
 # Leer el archivo Excel
 try:
@@ -10,11 +11,20 @@ except Exception as e:
     exit()
 
 # Limpiar y preparar los datos para JSON
-# Convertimos los datos NaN (Not a Number) a cadenas vacías o a "NO" para que sea más fácil manejarlos en JS
+# Convertimos los datos NaN (Not a Number) a cadenas vacías para que sea más fácil manejarlos en JS
 jugadores_df = jugadores_df.fillna('')
 
+# Función para convertir valores no serializables (como Timestamp) a string
+def convertir_valor(x):
+    if isinstance(x, (pd.Timestamp, datetime)):
+        # Ajusta el formato si querés incluir hora, etc.
+        return x.strftime('%Y-%m-%d')
+    return x
+
+# Aplicar la conversión a todo el DataFrame
+jugadores_df = jugadores_df.applymap(convertir_valor)
+
 # Convertimos el DataFrame de pandas a una lista de diccionarios
-# Esto es lo que JSON entiende como un array de objetos
 jugadores_json = jugadores_df.to_dict(orient='records')
 
 # Guardar la lista de diccionarios en un archivo JSON
