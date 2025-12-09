@@ -2,7 +2,7 @@
     {
         "Nombre completo": "ACUÑA SERGIO",
         "Cédula": 57255357,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-10-01",
         "Celular": 92016277,
         "Altura (cm)": 172,
@@ -21,7 +21,7 @@
     {
         "Nombre completo": "ALVAREZ BENJAMIN",
         "Cédula": 57738416,
-        "Edad": 16.0,
+        "Edad": 16,
         "Fecha de nacimiento": "2008-12-29",
         "Celular": 98979288,
         "Altura (cm)": 192,
@@ -40,7 +40,7 @@
     {
         "Nombre completo": "BARRIOS SANTINO",
         "Cédula": 57634258,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-10-31",
         "Celular": 91327048,
         "Altura (cm)": 178,
@@ -59,7 +59,7 @@
     {
         "Nombre completo": "BERON LEANDRO",
         "Cédula": 57158448,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-03-17",
         "Celular": 91641654,
         "Altura (cm)": 175,
@@ -78,7 +78,7 @@
     {
         "Nombre completo": "CABRERA IVAN",
         "Cédula": 57888532,
-        "Edad": 16.0,
+        "Edad": 16,
         "Fecha de nacimiento": "2009-03-27",
         "Celular": 98916705,
         "Altura (cm)": 165,
@@ -97,7 +97,7 @@
     {
         "Nombre completo": "CASTRO LUCAS",
         "Cédula": 58016691,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-02-23",
         "Celular": 98266334,
         "Altura (cm)": 182,
@@ -116,7 +116,7 @@
     {
         "Nombre completo": "DE LEON SANTIAGO",
         "Cédula": 57881136,
-        "Edad": 16.0,
+        "Edad": 16,
         "Fecha de nacimiento": "2009-03-23",
         "Celular": 97228868,
         "Altura (cm)": 182,
@@ -135,7 +135,7 @@
     {
         "Nombre completo": "FRYDLENDER GUILLERMO",
         "Cédula": 57613480,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-10-21",
         "Celular": 91379742,
         "Altura (cm)": 172,
@@ -154,7 +154,7 @@
     {
         "Nombre completo": "GARCIA ALAN",
         "Cédula": 57327756,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-01-17",
         "Celular": 91637635,
         "Altura (cm)": 174,
@@ -173,7 +173,7 @@
     {
         "Nombre completo": "GIMENEZ SANTIAGO",
         "Cédula": 57073232,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-02-12",
         "Celular": 98909012,
         "Altura (cm)": 171,
@@ -192,7 +192,7 @@
     {
         "Nombre completo": "GUICHARD FRANCO",
         "Cédula": 57541495,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-09-18",
         "Celular": 94097301,
         "Altura (cm)": 160,
@@ -211,7 +211,7 @@
     {
         "Nombre completo": "HERRERA LAUTARO",
         "Cédula": 57670436,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-11-19",
         "Celular": 92641117,
         "Altura (cm)": 187,
@@ -230,7 +230,7 @@
     {
         "Nombre completo": "IMPERIAL VALENTIN",
         "Cédula": 57523657,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-09-09",
         "Celular": 98585683,
         "Altura (cm)": 178,
@@ -249,7 +249,7 @@
     {
         "Nombre completo": "JOURDAN IVAN",
         "Cédula": 57986724,
-        "Edad": 16.0,
+        "Edad": 16,
         "Fecha de nacimiento": "2009-05-26",
         "Celular": 99859588,
         "Altura (cm)": 180,
@@ -268,7 +268,7 @@
     {
         "Nombre completo": "LA PAZ  CARLOS",
         "Cédula": 57048578,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-01-29",
         "Celular": 99089545,
         "Altura (cm)": 163,
@@ -287,7 +287,7 @@
     {
         "Nombre completo": "MENDEZ LORENZO",
         "Cédula": 57715004,
-        "Edad": 16.0,
+        "Edad": 16,
         "Fecha de nacimiento": "2008-12-14",
         "Celular": 92368709,
         "Altura (cm)": 185,
@@ -304,9 +304,9 @@
         "fotos": ""
     },
     {
-        "Nombre completo": "OLAVERRY",
+        "Nombre completo": "OLAVERRY SEBASTIAN",
         "Cédula": 57883554,
-        "Edad": "",
+        "Edad": 16,
         "Fecha de nacimiento": "25.03.09",
         "Celular": 92360268,
         "Altura (cm)": 182,
@@ -325,7 +325,7 @@
     {
         "Nombre completo": "PELAEZ",
         "Cédula": 57847241,
-        "Edad": 16.0,
+        "Edad": 16,
         "Fecha de nacimiento": "2009-03-04",
         "Celular": 9874239,
         "Altura (cm)": 178,
@@ -344,7 +344,7 @@
     {
         "Nombre completo": "PEREZ BAUTISTA",
         "Cédula": 57368655,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-06-18",
         "Celular": 92222814,
         "Altura (cm)": 183,
@@ -363,7 +363,7 @@
     {
         "Nombre completo": "PLANCHON GUILLERMO",
         "Cédula": 57551733,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-09-23",
         "Celular": 92030493,
         "Altura (cm)": 178,
@@ -382,7 +382,7 @@
     {
         "Nombre completo": "RODRIGUEZ TOMAS",
         "Cédula": 57842984,
-        "Edad": 16.0,
+        "Edad": 16,
         "Fecha de nacimiento": "2009-03-03",
         "Celular": 95636857,
         "Altura (cm)": 176,
@@ -401,7 +401,7 @@
     {
         "Nombre completo": "RODRIGUEZ PAN SANTIAGO",
         "Cédula": 57462669,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-08-08",
         "Celular": 92781376,
         "Altura (cm)": 170,
@@ -420,7 +420,7 @@
     {
         "Nombre completo": "SILVA BENJAMIN",
         "Cédula": 57204110,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-04-06",
         "Celular": 99482104,
         "Altura (cm)": 164,
@@ -439,7 +439,7 @@
     {
         "Nombre completo": "TORNELLI VICENTE",
         "Cédula": 58186064,
-        "Edad": 16.0,
+        "Edad": 16,
         "Fecha de nacimiento": "2009-09-26",
         "Celular": 99435578,
         "Altura (cm)": 175,
@@ -458,7 +458,7 @@
     {
         "Nombre completo": "UMPIERREZ LUCAS",
         "Cédula": 57079872,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-02-04",
         "Celular": 91513071,
         "Altura (cm)": 175,
@@ -477,7 +477,7 @@
     {
         "Nombre completo": "VIGNA BENJAMIN",
         "Cédula": 57215747,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-04-09",
         "Celular": 92640893,
         "Altura (cm)": 170,
@@ -496,7 +496,7 @@
     {
         "Nombre completo": "WALLER JUAN PABLO",
         "Cédula": 57179272,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-03-14",
         "Celular": 98467493,
         "Altura (cm)": 173,
@@ -515,7 +515,7 @@
     {
         "Nombre completo": "WIBMER MANUEL",
         "Cédula": 56988981,
-        "Edad": 17.0,
+        "Edad": 17,
         "Fecha de nacimiento": "2008-01-06",
         "Celular": 98412538,
         "Altura (cm)": 170,
